@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ComicController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,10 +18,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/comics', function () {
-    $comicsFile = public_path('comics.php');
-    if (File::exists($comicsFile)) {
-        $comics = include $comicsFile;
-        return view('partials.comics', compact('comics'));
-    } 
-});
+// Route::get('/comics', function () {
+//     $comicsFile = public_path('comics.php');
+//     if (File::exists($comicsFile)) {
+//         $comics = include $comicsFile;
+//         return view('partials.comics', compact('comics'));
+//     } 
+// });
+Route::resource('comics',ComicController::class);
